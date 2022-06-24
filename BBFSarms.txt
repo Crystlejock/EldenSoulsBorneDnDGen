@@ -1,0 +1,62 @@
+Cannon
+Large prototype firearms fashioned by the workshop heretics, the Powder Kegs. Use of this weapon is equivalent to toting a mounted cannon, complete with its ridiculous weight, staggering kick, and lavish use of Quicksilver Bullets, into battle. Such a monstrosity was doomed from the start, and indeed its development was cut short. Yet, against impossibly gigantic foes, it might be just the thing. "
+
+
+Church Cannon
+An oversized weapon used by the Healing Church. A type of cannon that fires with a curved trajectory and creates an explosion upon impact. Originally designed for use by brawny men with deteriorated brains, not for just any ordinary hunter. But the men lacked the wits to effectively operate firearms, and the weapon was quietly ushered into permanent storage.
+
+
+Evelyn
+Special pistol used by Cainhurst knights. The Evelyn uses Quicksilver Bullets, just as any workshop firearm, but the Cainhurst variant relies more on bloodtinge. Lovingly named after a woman and graced with an intricate design, Evelyns were adored by Cainhurst knights.
+
+
+Fist of Gratia
+A chunk of iron fitted with finger holes The hulking hunter woman Simple Gratia, ever hopeless when handling hunter firearms, preferred to knock the lights out of beasts with this hunk of iron, which incidentally caused heavy stagger. Gratia was a fearsome hunter, and to onlookers, her unrelenting pummelling appeared oddly heroic. No wonder this weapon later assumed her name.
+
+
+Flamesprayer
+A special weapon used by certain members of the Healing Church. Spits searing flames by using blood-imbued Quicksilver Bullets as a special medium. Not the most efficient weapon by any stretch, but sometimes a sea of flame is just what the doctor ordered. Besides, the beasts of Yharnam can always use a good cleansing.
+
+
+Gatling Gun
+This is a highly-customised, portable version of the stationary gatling gun operated by the old hunter Djura in Old Yharnam. It was the weapon of choice of the youngest of Djura's three companions. The Gatling Gun boasts exceptional rapid-firing functionality, but is considered a cumbersome weapon, due to its excessive weight and insatiable consumption of Quicksilver Bullets.
+
+
+Hunter Blunderbuss
+A blunderbuss created at the workshop for the hunters' line of work. Hunter firearms are specially crafted to employ Quicksilver Bullets fused with the wielder's own blood, boosting damage against beasts. The impact of this highly-effective weapon counters beasts' swift movements, and its wide spread is nigh-on guaranteed to hit the mark.
+
+
+Hunter Pistol
+Pistol made at the workshop, for hunters stalking beasts. Hunter firearms are specially crafted to employ Quicksilver Bullets fused with the wielder's own blood, boosting damage against beasts. The pistol is a quicker draw than the blunderbuss, allowing for speedier responses to attacks.
+
+
+Hunter's Torch
+A torch formed by the wrapping a pine resin cloth around the end of a long stick, once used in Old Yharnam. Designed to incinerate beasts and victims touched by the scourge. Its fire damage is highly effective against beasts.
+
+
+Loch Shield
+An artisanal shield crafted with blue glass. Originally used to safeguard the leader presiding over a sacred Healing Church ceremony, and later supplied to tomb prospectors, in particular those exploring the labyrinth of Isz. The blue is fashioned after a lake, and the shield greatly reduces all forms of non-physical damage. "
+
+
+Ludwig's Rifle
+A rifle typically used by Healing Church hunters. It is said that this rifle was employed by Ludwig, the first hunter of the Church. Its long, heavy barrel makes up in range for what it lacks in reload speed. Ludwig's Rifle exhibits several departures from the workshop's design, suggesting that the Church anticipated much larger inhuman beasts.
+
+
+Piercing Rifle
+A rifle engineered by the Oto Workshop, the precursor to the workshop of the heretical Powder Kegs. Designed for hunting on narrow streets, this weapon has been optimized to cause perforation wounds, but is unfit for reliably counter attacks.
+
+
+Repeating Pistol
+Repeating pistol typically used by Healing Church hunters. Crafted with mostly metal parts and exhibiting a complex design, the repeating pistol fires two shots at once, making it a ravenous consumer of Quicksilver Bullets. Should be used sparingly compared to its workshop counterpart, as the trump card in one's arsenal.
+
+
+Rosmarinus
+A special weapon used by the Choir, high-ranking members of the Healing Church. Sprays a cloud of sacred mist, created by using blood-imbued Quicksilver Bullets as a special medium. Arias are heard wherever sacred mist is seen, proving that the mist is a heavenly blessing. Oh, fair maiden, why is it that you weep?
+
+
+Torch
+A common torch formed by wrapping a pine resin-drenched cloth around the end of a long stick. Hunters choose torches not only because the hunt leads them to the darkest nooks, but also because certain creatures they encounter are possessed of a deathly fear of flame
+
+
+Wooden Shield
+A crude wooden shield used by the masses who have arisen to join the hunt. Hunters do not normally employ shields, ineffectual against the strength of the beasts as they tend to be. Shields are nice, but not if they engender passivity.
