@@ -1,0 +1,5 @@
+Region: {region}
+Themes: {themes}
+Biome: {biome}
+
+Write new lore and history for the DnD 5e region '{region}':
