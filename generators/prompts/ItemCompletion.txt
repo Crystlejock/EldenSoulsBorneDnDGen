@@ -2,3 +2,4 @@ Type: {type}
 Rarity: {rarity}
 Item Description:
 {effects}
+$$$
