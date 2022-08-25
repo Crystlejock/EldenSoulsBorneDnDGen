@@ -1,8 +1,1 @@
-[prompt]Item Name: {name}
-Description: {description}
-Type: {type}
-Rarity: {rarity}
-
-
-[Completion] Magical Effects:
-{effects}
+Item Name: {name}

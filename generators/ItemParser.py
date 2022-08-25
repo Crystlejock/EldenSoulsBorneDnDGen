@@ -1,14 +1,19 @@
 import json
 import random
 import re
+import jsonlines
 
 # Opening JSON file
 f = open('json/DnDMagicData.json')
 
 data = json.load(f)
-template = ""
+promptTemplate = ""
+completionTemplate = ""
+
 with open('prompts/ItemPrompt.txt', 'r') as file:
-    template = file.read()
+    promptTemplate = file.read()
+with open('prompts/ItemCompletion.txt', 'r') as file:
+    completionTemplate = file.read()
 
 type_table = {'HA': 'Heavy Armor', 'WD': 'Wand', 'S': 'Shield', 'MA': 'Medium Armor', 'P': 'Potion',
               'INS': 'Instrument', 'R': 'Ranged Weapon', 'M': 'Melee Weapon', 'RD': 'Rod', 'RG': 'Ring',
@@ -86,14 +91,19 @@ def parseItem(item):
         for effect in item["entries"]:
             effects += parseEffect(effect)
 
-    prompt = template.format(name=item["name"], type=type_table[type], rarity=item["rarity"], effects=effects,
+    pr = promptTemplate.format(name=item["name"])
+    co = completionTemplate.format(type=type_table[type], rarity=item["rarity"], effects=effects,
                              description="{description}")
-    return prompt
+
+    result = {"prompt":pr, "completion":co}
+    return result
 
 
 count = 0
 
-with open('prompts/ItemPromptOut.txt', 'w') as file:
+
+with open('prompts/ItemPromptOut.jsonl', 'w') as file:
+    writer = jsonlines.Writer(file)
     for item in data:
         prompt = ""
         if '_isInherited' in item:
@@ -103,5 +113,5 @@ with open('prompts/ItemPromptOut.txt', 'w') as file:
         else:
             prompt = parseItem(item)
             count += 1
-        file.write(prompt)
+        writer.write(prompt)
 
