@@ -17,8 +17,8 @@ with open('prompts/ItemCompletion.txt', 'r') as file:
 
 type_table = {'HA': 'Heavy Armor', 'WD': 'Wand', 'S': 'Shield', 'MA': 'Medium Armor', 'P': 'Potion',
               'INS': 'Instrument', 'R': 'Ranged Weapon', 'M': 'Melee Weapon', 'RD': 'Rod', 'RG': 'Ring',
-              'AF': 'Ammunition', 'GV': 'Generic Variant', 'SC': 'Scroll', 'LA': 'Light Armor', 'SCF': 'Wondrous Item',
-              'OTH': 'Key item', 'A': 'Arrow'}
+              'AF': 'Ammunition Futuristic', 'GV': 'Generic Variant', 'SC': 'Scroll', 'LA': 'Light Armor', 'SCF': 'Wondrous Item',
+              'OTH': 'Key item', 'A': 'Ammunition'}
 
 types = set()
 
