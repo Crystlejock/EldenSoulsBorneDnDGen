@@ -1,5 +1,6 @@
 import json
 import random
+import re
 
 # Opening JSON file
 f = open('json/DnDMagicData.json')
@@ -16,27 +17,53 @@ type_table = {'HA': 'Heavy Armor', 'WD': 'Wand', 'S': 'Shield', 'MA': 'Medium Ar
 
 types = set()
 
+matcher = re.compile("\{@[a-z]* (.*?)(\|.*?)?}")
+
+def parseInset(inset):
+    result = ""
+    result += inset['name'] + '\n'
+    for sub in inset['entries']:
+        result += '   ' + parseEffect(sub)
+    return result
+def parseList(list):
+    result = ""
+    for item in list['items']:
+        result += parseEffect(item)
+    return result
+
+def parseWrapper(wrapper):
+    return parseEffect(wrapper['wrapped'])
+
+def removeTokens(text):
+    pass1 = matcher.sub('\\1', text)
+    pass2 = matcher.sub('\\1', pass1)
+    return pass2
 
 def parseEffect(effect):
+    result = ""
     if (isinstance(effect, str)):
-        return effect + "\n"
+        result += removeTokens(effect) + "\n"
     elif (effect['type'] == "entries"):
-        result = ""
+        if 'name' in effect:
+            result += effect['name'] + ":\n"
         for sub in effect['entries']:
             result += parseEffect(sub)
-        result += "\n\n"
-        return result
     elif (effect['type'] == "table"):
-        result = "\n"
-        for row in effect['rows'][0]:
-            result += row + "\n"
         result += "\n"
-        return result
+        for row in effect['rows'][0]:
+            if (isinstance(row, str)):
+                result += removeTokens(row) + "\n"
+        result += "\n"
+    elif (effect['type'] == 'inset'):
+        result += parseInset(effect)
+    elif (effect['type'] == 'wrapper'):
+        result += parseWrapper(effect)
     elif (effect['type'] == "list"):
-        result = "LISTS UNSUPORTED\n"
-        return result
+        parseList(effect)
+
     else:
         return "unknown type " + effect['type'] + "\n"
+    return result + "\n"
 
 
 def parseItem(item):
@@ -52,8 +79,12 @@ def parseItem(item):
         type = "OTH"
 
     effects = ""
-    for effect in item["entries"]:
-        effects += parseEffect(effect)
+    if "_fullEntries" in item:
+        for effect in item["_fullEntries"]:
+            effects += parseEffect(effect)
+    else:
+        for effect in item["entries"]:
+            effects += parseEffect(effect)
 
     prompt = template.format(name=item["name"], type=type_table[type], rarity=item["rarity"], effects=effects,
                              description="{description}")
