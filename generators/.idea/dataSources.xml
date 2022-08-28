@@ -1,7 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="sample" uuid="f20b462a-6cb2-4fbe-b9ce-4e24db29dc2e">
+    <data-source source="LOCAL" name="Brave New World" uuid="253340ab-d619-4879-bf61-50edc51b26c8">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:C:\Users\jmacg\Documents\GitHub\EldenSoulsBorneDnDGen\generators\worlds\Brave New World.db</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+      <libraries>
+        <library>
+          <url>file://$APPLICATION_CONFIG_DIR$/jdbc-drivers/Xerial SQLiteJDBC/3.38.0/sqlite-jdbc-3.38.0.jar</url>
+        </library>
+      </libraries>
+    </data-source>
+    <data-source source="LOCAL" name="other_sample" uuid="0c3e45c6-5691-40f2-a36a-ae55119c0862">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:C:\Users\jmacg\Documents\GitHub\EldenSoulsBorneDnDGen\generators\worlds\other_sample.db</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+      <libraries>
+        <library>
+          <url>file://$APPLICATION_CONFIG_DIR$/jdbc-drivers/Xerial SQLiteJDBC/3.38.0/sqlite-jdbc-3.38.0.jar</url>
+        </library>
+      </libraries>
+    </data-source>
+    <data-source source="LOCAL" name="sample" uuid="a2879533-b5ef-426e-baaa-4689d78b3b7b">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
@@ -13,11 +37,11 @@
         </library>
       </libraries>
     </data-source>
-    <data-source source="LOCAL" name="Brave New World" uuid="253340ab-d619-4879-bf61-50edc51b26c8">
+    <data-source source="LOCAL" name="Bregandia" uuid="17b89a6b-99ad-4475-9a50-e95b7ae02c1f">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:C:\Users\jmacg\Documents\GitHub\EldenSoulsBorneDnDGen\generators\worlds\Brave New World.db</jdbc-url>
+      <jdbc-url>jdbc:sqlite:C:\Users\jmacg\Documents\GitHub\EldenSoulsBorneDnDGen\generators\worlds\Bregandia.db</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
       <libraries>
         <library>

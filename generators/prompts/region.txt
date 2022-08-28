@@ -1,3 +1,5 @@
+
+Nearby Connected Regions: {connected}
 Region: {region}
 Themes: {themes}
 Biome: {biome}

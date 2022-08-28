@@ -1,0 +1,11 @@
+Read the following for context for the region {region}:
+"{lore}"
+
+
+
+Rote: {location_1} to {location_2}
+Biome: {biome}
+Region: {region}
+Themes: {themes}
+
+Write unique lore about the route from {loation_1} to {location_2}

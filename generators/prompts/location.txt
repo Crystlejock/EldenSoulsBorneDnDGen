@@ -1,0 +1,11 @@
+Read the following for context for the region {region}:
+"{lore}"
+
+
+
+Location: {location}
+Biome: {biome}
+Region: {region}
+Themes: {themes}
+
+Assume the reader knows all about {region}, write new and unique lore and history for the DnD 5e location '{location}':
