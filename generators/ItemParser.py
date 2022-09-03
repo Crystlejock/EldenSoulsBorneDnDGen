@@ -17,12 +17,14 @@ with open('prompts/ItemCompletion.txt', 'r') as file:
 
 type_table = {'HA': 'Heavy Armor', 'WD': 'Wand', 'S': 'Shield', 'MA': 'Medium Armor', 'P': 'Potion',
               'INS': 'Instrument', 'R': 'Ranged Weapon', 'M': 'Melee Weapon', 'RD': 'Rod', 'RG': 'Ring',
-              'AF': 'Ammunition Futuristic', 'GV': 'Generic Variant', 'SC': 'Scroll', 'LA': 'Light Armor', 'SCF': 'Wondrous Item',
+              'AF': 'Ammunition Futuristic', 'GV': 'Generic Variant', 'SC': 'Scroll', 'LA': 'Light Armor',
+              'SCF': 'Wondrous Item',
               'OTH': 'Key item', 'A': 'Ammunition'}
 
 types = set()
 
 matcher = re.compile("\{@[a-z]* (.*?)(\|.*?)?}")
+
 
 def parseInset(inset):
     result = ""
@@ -30,19 +32,24 @@ def parseInset(inset):
     for sub in inset['entries']:
         result += '   ' + parseEffect(sub)
     return result
+
+
 def parseList(list):
     result = ""
     for item in list['items']:
         result += parseEffect(item)
     return result
 
+
 def parseWrapper(wrapper):
     return parseEffect(wrapper['wrapped'])
+
 
 def removeTokens(text):
     pass1 = matcher.sub('\\1', text)
     pass2 = matcher.sub('\\1', pass1)
     return pass2
+
 
 def parseEffect(effect):
     result = ""
@@ -54,11 +61,11 @@ def parseEffect(effect):
         for sub in effect['entries']:
             result += parseEffect(sub)
     elif (effect['type'] == "table"):
-        result += "\n"
+        if ('caption' in effect):
+            result += effect['caption']
         for row in effect['rows'][0]:
             if (isinstance(row, str)):
                 result += removeTokens(row) + "\n"
-        result += "\n"
     elif (effect['type'] == 'inset'):
         result += parseInset(effect)
     elif (effect['type'] == 'wrapper'):
@@ -68,7 +75,7 @@ def parseEffect(effect):
 
     else:
         return "unknown type " + effect['type'] + "\n"
-    return result + "\n"
+    return result
 
 
 def parseItem(item):
@@ -93,14 +100,13 @@ def parseItem(item):
 
     pr = promptTemplate.format(name=item["name"])
     co = completionTemplate.format(type=type_table[type], rarity=item["rarity"], effects=effects,
-                             description="{description}")
+                                   description="{description}")
 
-    result = {"prompt":pr, "completion":co}
+    result = {"prompt": pr, "completion": co}
     return result
 
 
 count = 0
-
 
 with open('prompts/ItemPromptOut.jsonl', 'w') as file:
     writer = jsonlines.Writer(file)
@@ -114,4 +120,3 @@ with open('prompts/ItemPromptOut.jsonl', 'w') as file:
             prompt = parseItem(item)
             count += 1
         writer.write(prompt)
-
