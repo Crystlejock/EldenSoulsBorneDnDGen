@@ -63,8 +63,8 @@ def parseEffect(effect):
         result += parseInset(effect)
     elif (effect['type'] == 'wrapper'):
         result += parseWrapper(effect)
-    elif (effect['type'] == "list"):
-        parseList(effect)
+    elif effect['type'] == "list":
+        result += parseList(effect)
 
     else:
         return "unknown type " + effect['type'] + "\n"
