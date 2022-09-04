@@ -62,7 +62,7 @@ class LoreStore():
             f.write("<h1>{region}</h1>".format(region=region))
             f.write("<div style=\"white-space: pre-wrap;\">{lore}</div>".format(lore=region_data['lore']))
             f.write(
-                "<object data=\""+region+".gv.svg\" type=\"image/svg+xml\"><span>Your browser doesn't support SVG images</span></object>")
+                "<object style=\"width:100%;height:100%\" data=\""+region+".gv.svg\" type=\"image/svg+xml\"><span>Your browser doesn't support SVG images</span></object>")
 
         dot.format = 'png'
         dot.render(directory=self.name)
