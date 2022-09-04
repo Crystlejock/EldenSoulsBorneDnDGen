@@ -1,0 +1,8 @@
+// Mossmoor Map
+digraph Mossmoor {
+	label=Mossmoor
+	"The Pit" [label="The Pit
+Themes:Spooky" href="The Pit_map.html"]
+	"Sea Port" [label="Sea Port
+Themes:Trade, Decay" href="Sea Port_map.html"]
+}

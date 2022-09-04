@@ -116,6 +116,7 @@ def updatedLocationEdges(lore_store, region, location):
             lore_store.removeLocationEdge(location, selected, region)
         else:
             lore_store.addLocationEdge(location, selected, region)
+        store.expoertData()
 
 def updatedRegionEdges(lore_store, region):
     options = lore_store.knownRegions()
@@ -137,6 +138,7 @@ def updatedRegionEdges(lore_store, region):
             lore_store.removeRegionEdge(region, selected)
         else:
             lore_store.addRegionEdge(region, selected)
+        store.expoertData()
 
 
 def updateLocation(lore_store, location, region):
@@ -175,6 +177,7 @@ def pickLocation(lore_store, region):
             return
         else:
             updateLocation(lore_store, location=selected, region=region)
+        store.expoertData()
 
 
 def pickRegion(lore_store):
@@ -184,7 +187,6 @@ def pickRegion(lore_store):
 
         options = lore_store.knownRegions()
         options.append("Create New Region")
-        options.append("Export Data")
         options.append("Back")
         for idx, option in enumerate(options):
             print("{idx}) {option}".format(idx=idx, option=option))
@@ -192,12 +194,11 @@ def pickRegion(lore_store):
         selected = options[int(input('Region No:'))]
         if (selected == "Create New Region"):
             addRegion(lore_store)
-        if (selected == "Export Data"):
-            print("Not Yet Implemented")
         elif (selected == "Back"):
             return
         else:
             done = pickLocation(lore_store, selected)
+        store.expoertData()
     return
 
 
@@ -207,6 +208,7 @@ if __name__ == '__main__':
     done = False
     while (store is not None):
         print("\n")
+        store.expoertData()
         pickRegion(store)
         store.close()
         store = pickWorld()

@@ -1,0 +1,22 @@
+// Region Map
+digraph regions {
+	Mossmoor [label="Mossmoor
+ Biome:Swamp
+Themes:Despair, Sorroe" href="Mossmoor_map.html"]
+	Mossmoor -> "The Flats" [dir=none]
+	"The Frozen North" [label="The Frozen North
+ Biome:Ice
+Themes:Mountains, Ice, Snow, Isolation" href="The Frozen North_map.html"]
+	"The Frozen North" -> "The Break" [dir=none]
+	"The Sands" [label="The Sands
+ Biome:Desert
+Themes:Heat, Travel, Spices" href="The Sands_map.html"]
+	"The Sands" -> "The Flats" [dir=none]
+	"The Flats" [label="The Flats
+ Biome:Farmland
+Themes:Hope, Life, Peace" href="The Flats_map.html"]
+	"The Flats" -> "The Break" [dir=none]
+	"The Break" [label="The Break
+ Biome:Rocky, Cliffs
+Themes:Dessolate, Remote, Tough" href="The Break_map.html"]
+}

@@ -4,6 +4,7 @@ import uuid
 import numpy as np
 import openai
 from openai.embeddings_utils import get_embedding
+import graphviz
 
 
 class LoreStore():
@@ -11,11 +12,66 @@ class LoreStore():
 
         self.conn = sqlite3.connect(filename)
         self.conn.row_factory = sqlite3.Row
-        self.conn.execute("CREATE TABLE IF NOT EXISTS location_lore (key text unique, lore text, themes text, location text, region text, embedding text)")
-        self.conn.execute("CREATE TABLE IF NOT EXISTS region_lore (key text unique, lore text, themes text, biome text, region text, embedding text)")
+        self.conn.execute(
+            "CREATE TABLE IF NOT EXISTS location_lore (key text unique, lore text, themes text, location text, region text, embedding text)")
+        self.conn.execute(
+            "CREATE TABLE IF NOT EXISTS region_lore (key text unique, lore text, themes text, biome text, region text, embedding text)")
         self.conn.execute("CREATE TABLE IF NOT EXISTS region_edges (key text unique, origin text, dest text)")
-        self.conn.execute("CREATE TABLE IF NOT EXISTS location_edges (key text unique, origin text, dest text, region text)")
+        self.conn.execute(
+            "CREATE TABLE IF NOT EXISTS location_edges (key text unique, origin text, dest text, region text)")
         self.conn.commit()
+        self.filename = filename
+        self.name = filename[:-len(".db")]
+
+    def expoertData(self):
+        dot = graphviz.Digraph('regions', comment='Region Map')
+        regions = self.knownRegions()
+        done = set()
+        for idx, region in enumerate(regions):
+            data = self.readDataForRegion(region)
+            dot.node(region, region + "\n Biome:" + data['biome'] + "\nThemes:" + data['themes'], href=region+"_map.html")
+            done.add(region)
+            for other in self.regionEdges(region):
+                if other not in done:
+                    dot.edge(region, other, dir='none')
+
+        regions = self.knownRegions()
+        for region in regions:
+            region_data = self.readDataForRegion(region)
+            c = graphviz.Digraph(region, comment=region + ' Map')
+            c.attr(label=region)
+            done = set()
+            locations = self.knownLocations(region)
+            for idx, location in enumerate(locations):
+                data = self.readDataForLocation(region, location)
+                c.node(location, location + "\nThemes:" + data['themes'], href=location+"_map.html")
+                done.add(location)
+                fl = open(self.name + "/" + location + "_map.html", "w")
+                fl.write("<h1>{location}</h1>".format(location=location))
+                fl.write("<div style=\"white-space: pre-wrap;\">{lore}</div>".format(lore=data['lore']))
+                fl.close()
+                for other in self.locationEdges(region=region, location=location):
+                    if other not in done:
+                        other_data = self.readDataForLocation(region=region, location=other)
+                        c.edge(location, other, dir='none')
+            c.format = 'png'
+            c.render(directory=self.name)
+            c.format = 'svg'
+            c.render(directory=self.name)
+            f = open(self.name + "/"+region+"_map.html", "w")
+            f.write("<h1>{region}</h1>".format(region=region))
+            f.write("<div style=\"white-space: pre-wrap;\">{lore}</div>".format(lore=region_data['lore']))
+            f.write(
+                "<object data=\""+region+".gv.svg\" type=\"image/svg+xml\"><span>Your browser doesn't support SVG images</span></object>")
+
+        dot.format = 'png'
+        dot.render(directory=self.name)
+        dot.format = 'svg'
+        dot.render(directory=self.name)
+        f = open(self.name+"/world_map.html", "w")
+        f.write("<object style=\"width:100%;height:100%\" data=\"regions.gv.svg\" type=\"image/svg+xml\"><span>Your browser doesn't support SVG images</span></object>")
+
+
 
 
     def close(self):
@@ -26,13 +82,11 @@ class LoreStore():
         rows = self.conn.execute('SELECT COUNT(*) FROM kv').fetchone()[0]
         return rows if rows is not None else 0
 
-
-
     def updateLocationEmbedding(self, key, engine="text-search-curie-doc-001"):
         cursor = self.conn.cursor()
         sql = '''SELECT lore, themes from location_lore where key=? '''
 
-        #try:
+        # try:
         result = cursor.execute(sql, (key,)).fetchone()
         embedding = get_embedding(engine=engine, text=("{lore}, {themes}").format(lore=result[0], themes=result[1]))
         sql = '''update location_lore set embedding = ? where key = ?'''
@@ -44,11 +98,12 @@ class LoreStore():
         sql = '''SELECT lore, themes, biome from region_lore where key=? '''
 
         result = cursor.execute(sql, (key,)).fetchone()
-        embedding = get_embedding(engine=engine, text=("{lore}, {themes}, {biome}").format(lore=result[0], themes=result[1], biome=result[2]))
+        embedding = get_embedding(engine=engine,
+                                  text=("{lore}, {themes}, {biome}").format(lore=result[0], themes=result[1],
+                                                                            biome=result[2]))
         sql = '''update region_lore set embedding = ? where key = ?'''
         cursor.execute(sql, (str(embedding), key))
         self.conn.commit()
-
 
     def updateAllEmbeddings(self, engine="text-search-curie-doc-001"):
         cursor = self.conn.cursor()
@@ -100,10 +155,9 @@ class LoreStore():
     def knownLocations(self, region):
         sql = ('''SELECT distinct location FROM location_lore where region=?''')
         cursor = self.conn.cursor()
-        cursor.execute(sql,(region,))
-        data =  cursor.fetchall()
+        cursor.execute(sql, (region,))
+        data = cursor.fetchall()
         return [i[0] for i in data]
-
 
     def readLore(self, key):
         cursor = self.conn.cursor()
@@ -113,7 +167,6 @@ class LoreStore():
             return result.fetchone()[0]
         except:
             return ""
-
 
     def locationEdges(self, location, region):
         cursor = self.conn.cursor()
@@ -161,7 +214,6 @@ class LoreStore():
         cursor.execute(sql, (other, region))
         self.conn.commit()
 
-
     def readLoreForLocation(self, region, location):
         cursor = self.conn.cursor()
         sql = '''SELECT lore from location_lore where region=? and location=? '''
@@ -179,9 +231,10 @@ class LoreStore():
             return dict(cursor.fetchall()[0])
         except:
             return "Location Data Missing"
+
     def readDataForRegion(self, region):
         cursor = self.conn.cursor()
-        sql = '''SELECT region, lore, biome from region_lore where region=?'''
+        sql = '''SELECT region, lore, biome, themes from region_lore where region=?'''
         try:
             cursor.execute(sql, (region,))
             return dict(cursor.fetchall()[0])
@@ -239,6 +292,7 @@ class LoreStore():
             temperature=0
         )
         return response.choices[0].text.strip()
+
     def summaryFromSimilar(self, region, themes, location):
         related = self.most_similar(region=region, themes=themes, location=location)
         prompt = ""
@@ -250,8 +304,6 @@ class LoreStore():
                 print(lore)
                 prompt += lore
 
-
-
         prompt += ("\"\nSummary:")
         response = openai.Completion.create(
             model="text-davinci-002",
@@ -260,9 +312,3 @@ class LoreStore():
             temperature=0
         )
         return response.choices[0].text.strip()
-
-
-
-
-
-

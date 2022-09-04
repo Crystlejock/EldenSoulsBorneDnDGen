@@ -1,0 +1,24 @@
+// The Sands Map
+digraph "The Sands" {
+	label="The Sands"
+	"Camp Nowhere" [label="Camp Nowhere
+Themes:Refuse, Water, Spice, Trade" href="Camp Nowhere_map.html"]
+	"Camp Nowhere" -> "Caves of Zambasa" [dir=none]
+	"Camp Nowhere" -> "Fort Mayhem" [dir=none]
+	"Camp Nowhere" -> "The Pit" [dir=none]
+	"Camp Nowhere" -> "The Last Oasis" [dir=none]
+	"Caves of Zambasa" [label="Caves of Zambasa
+Themes:Treasure, Secrets, Hidden" href="Caves of Zambasa_map.html"]
+	"Caves of Zambasa" -> "Fort Mayhem" [dir=none]
+	"Caves of Zambasa" -> "Rock or Ages" [dir=none]
+	"Caves of Zambasa" -> "The Last Oasis" [dir=none]
+	"Fort Mayhem" [label="Fort Mayhem
+Themes:Security, War, Strength" href="Fort Mayhem_map.html"]
+	"The Pit" [label="The Pit
+Themes:Fear, Loss" href="The Pit_map.html"]
+	"Rock or Ages" [label="Rock or Ages
+Themes:Strength, Secrets, History" href="Rock or Ages_map.html"]
+	"Rock or Ages" -> "The Last Oasis" [dir=none]
+	"The Last Oasis" [label="The Last Oasis
+Themes:Hope, Life, Water" href="The Last Oasis_map.html"]
+}
