@@ -108,15 +108,15 @@ class LoreStore():
     def updateAllEmbeddings(self, engine="text-search-curie-doc-001"):
         cursor = self.conn.cursor()
         cursor.execute('SELECT key FROM location_lore')
-        for row in cursor:
-            self.updateLocationEmbedding(row[0], engine)
+        #for row in cursor:
+        #    self.updateLocationEmbedding(row[0], engine)
 
     def writeLocationLore(self, lore, themes, location, region):
         key = str(uuid.uuid1())
         cursor = self.conn.cursor()
         sql = '''INSERT OR REPLACE INTO location_lore (key, lore, themes, location, region ) VALUES (?, ?, ?, ?, ?)'''
         cursor.execute(sql, (key, lore, themes, location, region))
-        self.updateLocationEmbedding(key)
+        #self.updateLocationEmbedding(key)
         self.conn.commit()
 
     def writeRegionLore(self, lore, region, themes, biome):
@@ -125,7 +125,7 @@ class LoreStore():
         sql = '''INSERT OR REPLACE INTO region_lore (key, lore, themes, region, biome ) VALUES (?, ?, ?, ?, ?)'''
         cursor.execute(sql, (key, lore, themes, region, biome))
         self.conn.commit()
-        self.updateRegionEmbedding(key)
+        #self.updateRegionEmbedding(key)
 
     def most_similar(self, themes, location, region, engine="text-search-curie-query-001"):
         bestScore = 0
