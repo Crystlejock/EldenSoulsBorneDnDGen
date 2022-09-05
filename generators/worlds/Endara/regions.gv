@@ -1,0 +1,14 @@
+// Region Map
+digraph regions {
+	"The Outskirts" [label="The Outskirts
+ Biome:Village
+Themes:Ruin, Torment, Chants, Traps" href="The Outskirts_map.html"]
+	"The Outskirts" -> "Nameless Copse" [dir=none]
+	"Nameless Copse" [label="Nameless Copse
+ Biome:Dense forest
+Themes:Huanted, Fog, Webs, Bigotry" href="Nameless Copse_map.html"]
+	"Nameless Copse" -> "Festering Asylum of Cages" [dir=none]
+	"Festering Asylum of Cages" [label="Festering Asylum of Cages
+ Biome:Asylum
+Themes:Madness, Undead, Poison, Necromancy, Glory" href="Festering Asylum of Cages_map.html"]
+}

@@ -1,0 +1,16 @@
+// The Outskirts Map
+digraph "The Outskirts" {
+	label="The Outskirts"
+	"Forgotten Graveyard" [label="Forgotten Graveyard
+Themes:Death, Illusion, Hope, eternity" href="Forgotten Graveyard_map.html"]
+	"Forgotten Graveyard" -> "Forked Aquaduct" [dir=none]
+	"Crossroad of Embers" [label="Crossroad of Embers
+Themes:Pyromancy, Choice, Dread, Memories" href="Crossroad of Embers_map.html"]
+	"Crossroad of Embers" -> "Mud River" [dir=none]
+	"Crossroad of Embers" -> "Forked Aquaduct" [dir=none]
+	"Mud River" [label="Mud River
+Themes:Insects, Magic, Fog, Despair" href="Mud River_map.html"]
+	"Mud River" -> "Forked Aquaduct" [dir=none]
+	"Forked Aquaduct" [label="Forked Aquaduct
+Themes:Prison, Poison, Chasm, Hopeless, Corruption" href="Forked Aquaduct_map.html"]
+}
